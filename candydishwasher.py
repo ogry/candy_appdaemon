@@ -12,7 +12,7 @@ power_attribute = "StatoDWash"                  # The name of the JSON attribute
 polling_interval = 30                       # How frequently check for the latest status.
 request_timeout =  15                        # Request timeout should be less than the polling interval 
 
-
+status=""
 
 
 max_retry_before_unavailable = 5
@@ -459,7 +459,10 @@ class CandyDishWashing(hass.Hass):
 ##################################
 ##################################
     def get_status(self):
-        return self.get_data("read")
+        if status == "":
+            status= self.get_data("read")
+            
+        return status
 
     def get_stats(self):
         self.get_data("prepareStatistics")
